@@ -16,23 +16,22 @@ import com.team.bean.Template;
 import com.team.dao.TemplateDAO;
 
 /**
- * Servlet implementation class TemplateServlet
+ * Servlet implementation class CompanyType
  */
-
-public class TemplateServlet extends HttpServlet {
+public class CompanyTypeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TemplateServlet() {
+    public CompanyTypeServlet() {
         super();
     }
-    
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
@@ -40,12 +39,11 @@ public class TemplateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String typeId = request.getParameter("type_id");
 		TemplateDAO td = new TemplateDAO();
-		List<Template> templates = td.getTemplatesByType(typeId);
+		List<CompanyType> types = td.getTemplateTypes();
+		String type = JSONArray.fromObject(types).toString();
 		response.setContentType("text/javascript;charset=utf-8");
-		response.getWriter().write(JSONArray.fromObject(templates).toString());
+		response.getWriter().write(type);
 
 	}
-
 }
