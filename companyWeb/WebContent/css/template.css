@@ -24,3 +24,12 @@ body{
 	height:60px;
 	background:red;
 }
+ul{
+	position:relative;
+	list-style:none; 
+	maigin:0px;
+}
+li{
+	position:relative;
+	display:inline
+}
