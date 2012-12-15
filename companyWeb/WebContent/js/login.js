@@ -1,3 +1,6 @@
+/**
+ * @author Jet
+ */
 
 $(document).ready(
     $("#login").click(function() {
