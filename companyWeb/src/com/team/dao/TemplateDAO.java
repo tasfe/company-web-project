@@ -10,19 +10,21 @@ import java.util.List;
 import com.team.bean.CompanyType;
 import com.team.bean.Template;
 import com.team.util.DBTool;
+import com.team.util.DBUtil;
 
 public class TemplateDAO {
-	private static DBTool db = null;
-	private static Connection conn = null;
+	private DBTool db = null;
+	private Connection conn = null;
 	public TemplateDAO(){
 		db = new DBTool();
-		conn = db.getConnection("", "shan", "shan");
+		conn = DBTool.getConnection("jdbc:mysql://192.168.1.20:3306/companyweb","root","root");
+		//conn = DBUtil.getConnection();
 	}
 	
 	//获取模板类型
-	public static List getTemplateTypes(){
+	public  List<CompanyType> getTemplateTypes(){
 		PreparedStatement ps = null;
-		ResultSet rs = null;
+	 	ResultSet rs = null;
 		List typeList = new ArrayList();
 		String sql = "select type_id, type_name, default_template_id from company_type";
 		try {
@@ -37,20 +39,19 @@ public class TemplateDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		finally{
+		}finally{
 			DBTool.close(conn, ps, rs);
 		}
 		return typeList;
 	}
 	
 	//根据类型获取模板
-	public static List getTemplatesByType(String typeId){
+	public List<Template> getTemplatesByType(String typeId){
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List templateList = new ArrayList();
 		String sql = "select template_id, type_id, template_name, template_xml_path from template where type_id = " + typeId;
-		if(typeId.trim() == ""){
+		if(typeId == null || typeId.trim() == ""){
 			sql = "select template_id, type_id, template_name, template_xml_path from template";
 		}
 		try {
@@ -65,10 +66,8 @@ public class TemplateDAO {
 				templateList.add(template);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally
-		{
+			e.printStackTrace();	
+		}finally{
 			DBTool.close(conn, ps, rs);
 		}
 		return templateList;
