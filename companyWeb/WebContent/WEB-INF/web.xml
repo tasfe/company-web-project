@@ -6,13 +6,12 @@
 	<display-name>companyWeb</display-name>
 	
 	<servlet>
-	    <servlet-name>testServlet</servlet-name>
-	    <servlet-class>com.test.servlet.TestServlet</servlet-class>
+	    <servlet-name>templateServlet</servlet-name>
+	    <servlet-class>com.team.servlet.TemplateServlet</servlet-class>
 	</servlet>
-	
 	<servlet-mapping>
-	    <servlet-name>testServlet</servlet-name>
-	    <url-pattern>/testServlet</url-pattern>
+	    <servlet-name>templateServlet</servlet-name>
+	    <url-pattern>/template</url-pattern>
 	</servlet-mapping>
 	
 	
