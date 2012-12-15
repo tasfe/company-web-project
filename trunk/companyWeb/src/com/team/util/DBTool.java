@@ -7,43 +7,43 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBTool {
-	
+
 	public static Connection getConnection(String dbUrl, String name, String passwd) {
-        Connection conn = null;
+		Connection conn = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbUrl, name, passwd);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return conn;
 	}
 
 	public static void close(Connection con, PreparedStatement ps, ResultSet rs) {
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			try {
-				if(rs !=null){
-					rs.close();
+				if (ps != null) {
+					ps.close();
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} finally{
+			} finally {
 				try {
-					if(ps != null){
-						ps.close();
+					if (con != null) {
+						con.close();
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
-				} finally{
-					try {
-						if(con != null){
-							con.close();
-						}
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
 				}
 			}
+		}
 	}
 }
