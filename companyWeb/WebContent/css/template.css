@@ -1,1 +1,26 @@
 @CHARSET "UTF-8";
+body{
+	margin:0;
+}
+
+#container{
+	margin:0 auto;
+	width:1000px;
+}
+
+#header{
+	height:70px;
+	background:yellow;
+	margin-bottom:5px;
+}
+
+#pageContent{
+	min-height:420px;
+	height:auto;
+	margin-bottom:5px;
+}
+
+#footer{
+	height:60px;
+	background:red;
+}
