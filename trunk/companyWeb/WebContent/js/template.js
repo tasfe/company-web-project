@@ -3,32 +3,43 @@ $(document).ready(function(){
 });
 
 function init(){
+	loadCompanyType();
 	loadTemplate("");
 }
 
+function loadCompanyType(){
+	$.ajax({
+		url: "../companytype",
+		type: "get",
+		success:function(data, textStatus){
+			showTemplateType(data);
+		}
+	});
+}
 function loadTemplate(typeId){
 	$.ajax({
-		url: "/template",
+		url: "../template",
 		type: "get",
 		data:{type_id:typeId},
-		success:function(dataDict){
-			if(typeId == ""){
-				//showTemplateType(1);
-				//showTempates(2);
-				alert(dataDict);
-			}
-			else{
-				alert(dataDict);
-				//showTempates(2);
-			}
+		success:function(data){
+			showTemplates(data);
 		}
 	});
 }
 
 function showTemplateType(data){
-	$("#type_list").append("<li class=\"type\">type</li>");
+	var dataObj=eval(data);
+	for(var d in dataObj)
+	{
+		$("#type_list").append("<li class=\"type\">" + dataObj[d].typeName + "</li>");
+	}
+	
 }
 
 function showTemplates(data){
-	$("#template_list").append("<li class=\"template\">template</li>");
+	var dataObj=eval(data);
+	for(var d in dataObj)
+	{
+		$("#template_list").append("<li class=\"template\">" + dataObj[d].templateName + "</li>");
+	}
 }
