@@ -24,7 +24,7 @@ body{
 	height:60px;
 	background:red;
 }
-ul{
+/* ul{
 	position:relative;
 	list-style:none; 
 	maigin:0px;
@@ -32,4 +32,19 @@ ul{
 li{
 	position:relative;
 	display:inline
+} */
+
+#type > h3{
+	float:left;
+	width:10%;
+}
+.template > img{
+	width:100px;
+	height:100px;
+}
+
+.template li{
+	margin:5px;
+	list-style:none; 
+	float:left;
 }
