@@ -9,6 +9,11 @@ import java.util.concurrent.TimeUnit;
 
 import com.team.util.DBUtil;
 
+/**
+ * 连接池
+ * @author Allen(challengeliang@gmail.com)
+ *
+ */
 public class ConnectionPool {
 
 	private BlockingQueue<Connection> pools;
