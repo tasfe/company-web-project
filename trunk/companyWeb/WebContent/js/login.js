@@ -1,14 +1,14 @@
-$(document).ready(
+$(document).ready(function(){
     $("#login").click(function() {
-    	$("#loginForm").attr("action","./login");
+    	$("#loginForm").attr("action","../login");
     	$("#loginForm").submit();
     });
     $("#loginCancel").click(function() {
-    	$("#loginForm").attr("action","./");
+    	$("#loginForm").attr("action","../");
     	$("#loginCancel").submit();
     });
     $("#regist").click(function() {
-    	$("#loginForm").attr("action","./");
+    	$("#loginForm").attr("action","../");
     	$("#regist").submit();
     });
-)
+});
