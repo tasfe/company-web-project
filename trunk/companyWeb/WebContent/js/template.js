@@ -53,7 +53,7 @@ function showTemplates(data){
 	else{
 		for(var d in dataObj)
 		{
-			$("#template_list").append("<li class=\"template\"><img src=\""+ dataObj[d].templateXmlPath +"template.png\"/>" +
+			$("#template_list").append("<li class=\"template\"><a href=\"" + dataObj[d].templateXmlPath + "template.html\" target=\"_blank\"><img title=\"点击预览\" src=\""+ dataObj[d].templateXmlPath +"template.png\"/></a>" +
 					"<label>" + dataObj[d].templateName + "</label></li>");
 			//$("#template_list").append("<div class=\"span2\"><img src=\"../img/templates/template1.png\" width=\"100px\" height=\"100px\"/>" + dataObj[d].templateName + "</div>");
 		}
