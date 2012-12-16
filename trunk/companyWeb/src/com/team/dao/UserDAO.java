@@ -37,4 +37,5 @@ public class UserDAO extends BaseDAO {
 
 		return company_name;
 	}
+
 }
