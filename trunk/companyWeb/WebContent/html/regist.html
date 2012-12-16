@@ -4,7 +4,7 @@
   <link href="../css/login.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-  <form id="loginForm" method="POST" action="">
+  <form id="loginForm" method="POST" action="../companyRegist">
   <div class="bodycontent">
     <div id="loginImage"><img src="../img/image001.jpg"></img></div>
     <div id="loginContent">
@@ -13,27 +13,54 @@
           <img src="../img/user_top_l.gif"><img src="../img/user_top_c.gif"><img src="../img/user_top_r.gif">
         </dd>
         <dd id="logindd">
-          <label class="textleft">用户名</label>
+          <label class="textleft">公司名</label>
         </dd>
         <dd>
-          <input id="uname" name="username" type="text">
+          <input id="companyName" name="companyName" type="text">
         </dd>
         <dd>
-          <label class="textleft">密码</label>
+          <label class="textleft">公司类型</label>
         </dd>
         <dd>
-          <input id="upss" name="password" type="password">
+          <select id="companytype" name="companytype">
+          <option value="test">test</option>
+          </select>
+        </dd>
+        <dd>
+          <label class="textleft">联系人</label>
+        </dd>
+        <dd>
+          <input id="contactor" name="contactor" type="text">
+        </dd>
+        <dd>
+          <label class="textleft">联系电话</label>
+        </dd>
+        <dd>
+          <input id="contactphone" name="contactphone" type="text">
+        </dd>
+        <dd>
+          <label class="textleft">邮箱</label>
+        </dd>
+        <dd>
+          <input id="email" name="email" type="text">
+        </dd>
+        <dd>
+          <label class="textleft">网址</label>
+        </dd>
+        <dd>
+          <input id="site" name="site" type="text">
+        </dd>
+        <dd>
+          <label class="textleft">公司地址</label>
+        </dd>
+        <dd>
+          <input id="address" name="address" type="text">
         </dd>
       </dl>
       <dl>
         <dd>
-          <input id="login" type="button" value="登录">
+          <input id="login" type="button" value="添加">
           <input id="loginCancel" type="button" value="暂不注册">
-        </dd>
-      </dl>
-      <dl>
-        <dd>
-          <input id="regist" type="button" value="注册">
         </dd>
       </dl>
     </div>
