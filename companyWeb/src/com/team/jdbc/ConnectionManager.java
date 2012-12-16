@@ -15,6 +15,11 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.team.util.ConfigUtil;
 
+/**
+ * 连接池管理器
+ * @author Allen(challengeliang@gmail.com)
+ *
+ */
 public class ConnectionManager {
 
 	// 与 双重检查锁并用
