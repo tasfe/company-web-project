@@ -14,7 +14,7 @@ import com.team.util.MD5Util;
 public class UserDAO extends BaseDAO {
 
 	public String login(String username, String password) {
-		String sql = "select company_name from company where company_name = ? and password = ?";
+		String sql = "select company_name from company where contact_email = ? and password = ?";
 		String company_name = "";
 		try {
 			PreparedStatement statement = this.getConnection()

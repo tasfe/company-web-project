@@ -20,6 +20,6 @@ public class CompanyService {
 	}
 
 	public boolean updateCompany(Company company) {
-		return this.updateCompany(company);
+		return this.companyDAO.updateCompany(company);
 	}
 }
