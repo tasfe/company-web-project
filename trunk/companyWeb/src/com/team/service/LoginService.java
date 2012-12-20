@@ -1,5 +1,7 @@
 package com.team.service;
 
+import java.sql.SQLException;
+
 import com.team.dao.UserDAO;
 
 /**
@@ -15,7 +17,7 @@ public class LoginService {
 		userDao = new UserDAO();
 	}
 	
-	public String login(String username,String password){
+	public String login(String username,String password) throws SQLException{
 		return this.userDao.login(username, password);
 	}
 }
