@@ -39,6 +39,18 @@
             /login
         </url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>companyRegist</servlet-name>
+    <servlet-class>
+            com.team.servlet.CompanyServlet
+        </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>companyRegist</servlet-name>
+    <url-pattern>
+            /companyRegist
+        </url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>
             index.jsp
