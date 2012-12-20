@@ -10,27 +10,27 @@ public class BaseDAO {
 
 	private Connection connection;
 	private ConnectionManager connManager;
-	private boolean isAutoCommit;
-
-	public boolean isAutoCommit() {
-		return isAutoCommit;
-	}
-
-	public void setAutoCommit(boolean isAutoCommit) {
-		this.isAutoCommit = isAutoCommit;
-	}
+//	private boolean isAutoCommit;
+//
+//	public boolean isAutoCommit() {
+//		return isAutoCommit;
+//	}
+//
+//	public void setAutoCommit(boolean isAutoCommit) {
+//		this.isAutoCommit = isAutoCommit;
+//	}
 
 	public BaseDAO() {
 		connManager = ConnectionManager.getConnectionManager();
 		connection = connManager.getConnection();
-		isAutoCommit = false;
+//		isAutoCommit = false;
 	}
 
-	public BaseDAO(boolean autoCommit) {
-		connManager = ConnectionManager.getConnectionManager();
-		connection = connManager.getConnection();
-		isAutoCommit = autoCommit;
-	}
+//	public BaseDAO(boolean autoCommit) {
+//		connManager = ConnectionManager.getConnectionManager();
+//		connection = connManager.getConnection();
+//		isAutoCommit = autoCommit;
+//	}
 
 	public ResultSet query(String sql) throws SQLException {
 		this.connection.setAutoCommit(true);
