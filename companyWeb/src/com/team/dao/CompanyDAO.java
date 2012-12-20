@@ -14,7 +14,7 @@ import com.team.util.MD5Util;
  */
 public class CompanyDAO extends BaseDAO {
 
-	public boolean addCompany(Company company) {
+	public boolean addCompany(Company company) throws SQLException {
 		String sql = "insert into company (company_name,password,"
 				+ "business_license,contact_phone,contact_email,contact_user,"
 				+ "web_path,company_address,type_id) values (?,?,?,?,?,?,?,?,?)";
@@ -58,13 +58,13 @@ public class CompanyDAO extends BaseDAO {
 			return result;
 		} catch (SQLException e) {
 			this.rollback();
-			throw new RuntimeException(e);
+			throw e;
 		} finally {
 			this.releaseConnection();
 		}
 	}
 
-	public boolean updateCompany(Company company) {
+	public boolean updateCompany(Company company) throws SQLException {
 		String sql = "update company set company_name = ?,password = ?,"
 				+ "business_license = ?,contact_phone = ?,contact_email = ?,"
 				+ "contact_user = ?,web_path = ?,company_address = ?,"
@@ -110,13 +110,13 @@ public class CompanyDAO extends BaseDAO {
 			return statement.execute();
 		} catch (SQLException e) {
 			this.rollback();
-			throw new RuntimeException(e);
+			throw e;
 		} finally {
 			this.releaseConnection();
 		}
 	}
 
-	public boolean deleteCompany(Company company) {
+	public boolean deleteCompany(Company company) throws SQLException {
 		String sql = "delete from company where company_id = ?";
 		try {
 			this.closeAutoCommit();
@@ -128,7 +128,7 @@ public class CompanyDAO extends BaseDAO {
 			return statement.execute();
 		} catch (SQLException e) {
 			this.rollback();
-			throw new RuntimeException(e);
+			throw e;
 		} finally {
 			this.releaseConnection();
 		}
