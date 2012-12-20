@@ -3,6 +3,7 @@ package com.team.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -58,6 +59,7 @@ public class CompanyServlet extends HttpServlet {
 			}
 			m.invoke(this, request, response);
 		} catch (Exception e) {
+			//TODO for logger
 			e.printStackTrace();
 		}
 
@@ -106,7 +108,12 @@ public class CompanyServlet extends HttpServlet {
 		}
 
 		CompanyService service = new CompanyService();
-		boolean isSuccess = service.addCompany(company);
+		boolean isSuccess = false;
+		try {
+			isSuccess = service.addCompany(company);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		if (isSuccess) {
 			response.sendRedirect("");

@@ -2,6 +2,7 @@ package com.team.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +34,13 @@ public class LoginServlet extends HttpServlet {
 			writer.write("{'isLogin':fase;'errmsg':'登录信息为空'}");
 		} else {
 			LoginService service = new LoginService();
-			String companyname = service.login(uname, password);
+			String companyname = "";
+			try {
+				companyname = service.login(uname, password);
+			} catch (SQLException e) {
+				// TODO for Logger
+				e.printStackTrace();
+			}
 			if (StringUtils.isEmpty(companyname)) {
 				writer.write("{'isLogin':fase;'errmsg':'没有该用户,请注册'}");
 			} else {
