@@ -1,7 +1,5 @@
 package com.team.dao;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.team.util.MD5Util;
@@ -17,17 +15,14 @@ public class UserDAO extends BaseDAO {
 		String sql = "select company_name from company where contact_email = ? and password = ?";
 		String company_name = "";
 		try {
-			PreparedStatement statement = this.getConnection()
+			statement = this.getConnection()
 					.prepareStatement(sql);
 			statement.setString(1, username);
 			statement.setString(2, MD5Util.getMD5String(password));
-			ResultSet result = statement.executeQuery();
-			while (result.next()) {
-				company_name = result.getString("company_name");
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				company_name = resultSet.getString("company_name");
 			}
-			
-			result.close();
-			statement.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
