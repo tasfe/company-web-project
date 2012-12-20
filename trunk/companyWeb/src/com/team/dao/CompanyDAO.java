@@ -1,6 +1,5 @@
 package com.team.dao;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import org.apache.commons.lang.StringUtils;
@@ -19,9 +18,10 @@ public class CompanyDAO extends BaseDAO {
 		String sql = "insert into company (company_name,password,"
 				+ "business_license,contact_phone,contact_email,contact_user,"
 				+ "web_path,company_address,type_id) values (?,?,?,?,?,?,?,?,?)";
+		boolean result = false;
 		try {
 			this.closeAutoCommit();
-			PreparedStatement statement = this.getConnection()
+			statement = this.getConnection()
 					.prepareStatement(sql);
 			statement.setString(1,
 					StringUtils.isEmpty(company.getCompanyName()) ? ""
@@ -54,13 +54,12 @@ public class CompanyDAO extends BaseDAO {
 					.getCompanyAddress()) ? "" : company.getCompanyAddress());
 
 			statement.setInt(9, company.getTypeId());
-
-			return statement.execute();
+			result = statement.execute();
+			return result;
 		} catch (SQLException e) {
 			this.rollback();
 			throw new RuntimeException(e);
 		} finally {
-			this.defaultAutoCommit();
 			this.releaseConnection();
 		}
 	}
@@ -73,7 +72,7 @@ public class CompanyDAO extends BaseDAO {
 
 		try {
 			this.closeAutoCommit();
-			PreparedStatement statement = this.getConnection()
+			statement = this.getConnection()
 					.prepareStatement(sql);
 			statement.setString(1,
 					StringUtils.isEmpty(company.getCompanyName()) ? ""
@@ -113,7 +112,6 @@ public class CompanyDAO extends BaseDAO {
 			this.rollback();
 			throw new RuntimeException(e);
 		} finally {
-			this.defaultAutoCommit();
 			this.releaseConnection();
 		}
 	}
@@ -122,7 +120,7 @@ public class CompanyDAO extends BaseDAO {
 		String sql = "delete from company where company_id = ?";
 		try {
 			this.closeAutoCommit();
-			PreparedStatement statement = this.getConnection()
+			statement = this.getConnection()
 					.prepareStatement(sql);
 
 			statement.setInt(1, company.getCompanyId());
@@ -132,7 +130,6 @@ public class CompanyDAO extends BaseDAO {
 			this.rollback();
 			throw new RuntimeException(e);
 		} finally {
-			this.defaultAutoCommit();
 			this.releaseConnection();
 		}
 	}
