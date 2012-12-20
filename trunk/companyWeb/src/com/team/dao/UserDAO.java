@@ -11,7 +11,7 @@ import com.team.util.MD5Util;
  */
 public class UserDAO extends BaseDAO {
 
-	public String login(String username, String password) {
+	public String login(String username, String password) throws SQLException {
 		String sql = "select company_name from company where contact_email = ? and password = ?";
 		String company_name = "";
 		try {
@@ -25,7 +25,7 @@ public class UserDAO extends BaseDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			throw e;
 		} finally {
 			this.releaseConnection();
 		}

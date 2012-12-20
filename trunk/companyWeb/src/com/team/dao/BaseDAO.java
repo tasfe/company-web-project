@@ -42,9 +42,21 @@ public class BaseDAO {
 	// }
 
 	public void releaseConnection() {
-		this.closeResultSet();
-		this.closeStatement();
-		this.defaultAutoCommit();
+		try {
+			this.closeResultSet();
+		} catch (SQLException e) {
+			//TODO ignore the exception because the next step must execute
+		}
+		try {
+			this.closeStatement();
+		} catch (SQLException e) {
+			//TODO ignore the exception because the next step must execute
+		}
+		try {
+			this.defaultAutoCommit();
+		} catch (SQLException e) {
+			//TODO ignore the because the next step must execute
+		}
 		connManager.releaseConnection();
 	}
 
@@ -52,49 +64,29 @@ public class BaseDAO {
 		return this.connection;
 	}
 
-	public void closeAutoCommit() {
-		try {
-			this.connection.setAutoCommit(false);
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
+	public void closeAutoCommit() throws SQLException {
+		this.connection.setAutoCommit(false);
 	}
 
-	public void openAutoCommit() {
-		try {
-			this.connection.setAutoCommit(true);
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
+	public void openAutoCommit() throws SQLException {
+		this.connection.setAutoCommit(true);
 	}
 
-	public void defaultAutoCommit() {
+	public void defaultAutoCommit() throws SQLException {
 		openAutoCommit();
 	}
 
-	public void rollback() {
-		try {
-			this.connection.rollback();
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
+	public void rollback() throws SQLException {
+		this.connection.rollback();
 	}
 
-	public void closeStatement() {
-		try {
-			if (this.statement != null)
-				this.statement.close();
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
+	public void closeStatement() throws SQLException {
+		if (this.statement != null)
+			this.statement.close();
 	}
-	
-	public void closeResultSet(){
-		try {
-			if (this.resultSet != null)
-				this.resultSet.close();
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
+
+	public void closeResultSet() throws SQLException {
+		if (this.resultSet != null)
+			this.resultSet.close();
 	}
 }
