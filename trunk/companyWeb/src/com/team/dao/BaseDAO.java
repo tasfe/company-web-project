@@ -46,4 +46,31 @@ public class BaseDAO {
 		return this.connection;
 	}
 
+	public void closeAutoCommit(){
+		try {
+			this.connection.setAutoCommit(false);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void openAutoCommit(){
+		try {
+			this.connection.setAutoCommit(true);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void defaultAutoCommit(){
+		openAutoCommit();
+	}
+	
+	public void rollback(){
+		try {
+			this.connection.rollback();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

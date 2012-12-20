@@ -20,6 +20,7 @@ public class CompanyDAO extends BaseDAO {
 				+ "business_license,contact_phone,contact_email,contact_user,"
 				+ "web_path,company_address,type_id) values (?,?,?,?,?,?,?,?,?)";
 		try {
+			this.closeAutoCommit();
 			PreparedStatement statement = this.getConnection()
 					.prepareStatement(sql);
 			statement.setString(1,
@@ -56,8 +57,10 @@ public class CompanyDAO extends BaseDAO {
 
 			return statement.execute();
 		} catch (SQLException e) {
+			this.rollback();
 			throw new RuntimeException(e);
 		} finally {
+			this.defaultAutoCommit();
 			this.releaseConnection();
 		}
 	}
@@ -69,6 +72,7 @@ public class CompanyDAO extends BaseDAO {
 				+ "type_id = ? set company_id = ?";
 
 		try {
+			this.closeAutoCommit();
 			PreparedStatement statement = this.getConnection()
 					.prepareStatement(sql);
 			statement.setString(1,
@@ -106,8 +110,10 @@ public class CompanyDAO extends BaseDAO {
 
 			return statement.execute();
 		} catch (SQLException e) {
+			this.rollback();
 			throw new RuntimeException(e);
 		} finally {
+			this.defaultAutoCommit();
 			this.releaseConnection();
 		}
 	}
@@ -115,6 +121,7 @@ public class CompanyDAO extends BaseDAO {
 	public boolean deleteCompany(Company company) {
 		String sql = "delete from company where company_id = ?";
 		try {
+			this.closeAutoCommit();
 			PreparedStatement statement = this.getConnection()
 					.prepareStatement(sql);
 
@@ -122,8 +129,10 @@ public class CompanyDAO extends BaseDAO {
 
 			return statement.execute();
 		} catch (SQLException e) {
+			this.rollback();
 			throw new RuntimeException(e);
 		} finally {
+			this.defaultAutoCommit();
 			this.releaseConnection();
 		}
 	}
