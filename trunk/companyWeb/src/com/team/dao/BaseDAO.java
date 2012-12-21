@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.team.exception.NoConnectionException;
 import com.team.jdbc.ConnectionManager;
 
 public class BaseDAO {
@@ -61,6 +63,9 @@ public class BaseDAO {
 	}
 
 	public Connection getConnection() {
+		if (this.connection == null){
+			throw new NoConnectionException("Cannot get the Connection");
+		}
 		return this.connection;
 	}
 
