@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.team.exception.NoConnectionException;
 import com.team.service.LoginService;
 
 public class LoginServlet extends HttpServlet {
@@ -38,6 +39,9 @@ public class LoginServlet extends HttpServlet {
 			try {
 				companyname = service.login(uname, password);
 			} catch (SQLException e) {
+				// TODO for Logger
+				e.printStackTrace();
+			} catch(NoConnectionException e){
 				// TODO for Logger
 				e.printStackTrace();
 			}

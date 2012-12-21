@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 
 import com.team.bean.Company;
+import com.team.exception.NoConnectionException;
 import com.team.service.CompanyService;
 
 /**
@@ -112,6 +113,9 @@ public class CompanyServlet extends HttpServlet {
 		try {
 			isSuccess = service.addCompany(company);
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch(NoConnectionException e){
+			// TODO for Logger
 			e.printStackTrace();
 		}
 
