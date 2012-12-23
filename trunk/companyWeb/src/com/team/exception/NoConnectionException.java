@@ -5,7 +5,7 @@ package com.team.exception;
  * @author Allen
  *
  */
-public class NoConnectionException extends RuntimeException {
+public class NoConnectionException extends Exception {
 
 	private static final long serialVersionUID = -5290432208651609290L;
 	
