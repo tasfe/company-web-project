@@ -62,7 +62,7 @@ public class BaseDAO {
 		connManager.releaseConnection();
 	}
 
-	public Connection getConnection() {
+	public Connection getConnection() throws NoConnectionException {
 		if (this.connection == null){
 			throw new NoConnectionException("Cannot get the Connection");
 		}

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.team.bean.User;
 import com.team.exception.NoConnectionException;
 import com.team.service.LoginService;
 
@@ -32,24 +33,24 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 
 		if (StringUtils.isBlank(uname) || StringUtils.isBlank(password)) {
-			writer.write("{'isLogin':fase;'errmsg':'登录信息为空'}");
+			writer.write("{'isLogin':fase,'errmsg':'登录信息为空'}");
 		} else {
 			LoginService service = new LoginService();
-			String companyname = "";
+			User user = null;
 			try {
-				companyname = service.login(uname, password);
+				user = service.login(uname, password);
 			} catch (SQLException e) {
 				// TODO for Logger
 				e.printStackTrace();
-			} catch(NoConnectionException e){
+			} catch (NoConnectionException e) {
 				// TODO for Logger
 				e.printStackTrace();
 			}
-			if (StringUtils.isEmpty(companyname)) {
-				writer.write("{'isLogin':fase;'errmsg':'没有该用户,请注册'}");
+			if (user == null || StringUtils.isEmpty(user.getUserName())) {
+				writer.write("{'isLogin':fase,'errmsg':'没有该用户,请注册'}");
 			} else {
-				writer.write("{'isLogin':true;'name':'" + companyname + "'}");
-				writer.write(companyname);
+				writer.write("{'isLogin':true,'name':'" + user.getUserName()
+						+ "',+'id':'+" + user.getUserId() + "'}");
 			}
 		}
 		writer.close();

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import org.apache.commons.lang.StringUtils;
 
 import com.team.bean.Company;
+import com.team.exception.NoConnectionException;
 import com.team.util.MD5Util;
 
 /**
@@ -14,7 +15,7 @@ import com.team.util.MD5Util;
  */
 public class CompanyDAO extends BaseDAO {
 
-	public boolean addCompany(Company company) throws SQLException {
+	public boolean addCompany(Company company) throws SQLException, NoConnectionException {
 		String sql = "insert into company (company_name,password,"
 				+ "business_license,contact_phone,contact_email,contact_user,"
 				+ "web_path,company_address,type_id) values (?,?,?,?,?,?,?,?,?)";
@@ -64,7 +65,7 @@ public class CompanyDAO extends BaseDAO {
 		}
 	}
 
-	public boolean updateCompany(Company company) throws SQLException {
+	public boolean updateCompany(Company company) throws SQLException, NoConnectionException {
 		String sql = "update company set company_name = ?,password = ?,"
 				+ "business_license = ?,contact_phone = ?,contact_email = ?,"
 				+ "contact_user = ?,web_path = ?,company_address = ?,"
@@ -116,7 +117,7 @@ public class CompanyDAO extends BaseDAO {
 		}
 	}
 
-	public boolean deleteCompany(Company company) throws SQLException {
+	public boolean deleteCompany(Company company) throws SQLException, NoConnectionException {
 		String sql = "delete from company where company_id = ?";
 		try {
 			this.closeAutoCommit();

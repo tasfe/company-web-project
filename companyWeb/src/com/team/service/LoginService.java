@@ -2,7 +2,9 @@ package com.team.service;
 
 import java.sql.SQLException;
 
+import com.team.bean.User;
 import com.team.dao.UserDAO;
+import com.team.exception.NoConnectionException;
 
 /**
  * 
@@ -17,7 +19,7 @@ public class LoginService {
 		userDao = new UserDAO();
 	}
 	
-	public String login(String username,String password) throws SQLException{
+	public User login(String username,String password) throws SQLException, NoConnectionException{
 		return this.userDao.login(username, password);
 	}
 }
