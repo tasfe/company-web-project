@@ -72,4 +72,25 @@ public class TemplateDAO {
 		}
 		return templateList;
 	}
+	
+	//搜索
+	public List<String> getSearchResult(String condition){
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List resultList = new ArrayList();
+		String sql = "select template_name from template where template_name like \'%" + condition + "%\' limit 5";
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				resultList.add(rs.getString("template_name"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally{
+			DBTool.close(conn, ps, rs);
+		}
+		return resultList;
+	}
 }
