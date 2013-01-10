@@ -2,6 +2,8 @@ package com.team.servlet;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.team.util.FileUtil;
+import com.team.util.TagsUtil;
 
 @WebServlet(description = "选择模板", urlPatterns = { "/chooseTemplate.html" })
 public class ChooseTemplate extends HttpServlet {
@@ -31,6 +34,17 @@ public class ChooseTemplate extends HttpServlet {
 		String webRootPath = request.getServletContext().getRealPath("/");
 		String templatePath = webRootPath + "templates" + "/" + templateName;
 		String companyPath = webRootPath + "companies" + "/" + companyName;
+		
+		/**
+		 * 取到页面中出现的所有标签合集
+		 */
+		List<String> tags = new ArrayList<String>();
+		String tagsFilePath = webRootPath + File.separator + "WEB-INF" + File.separator + "classes" + File.separator + "tags.sequences";
+		try {
+			tags = TagsUtil.tags(tagsFilePath);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		/**
 		 * 找到模板的目录
@@ -56,8 +70,6 @@ public class ChooseTemplate extends HttpServlet {
 					/**
 					 * 如果是文件，就解析文件里的标签，生成输入信息
 					 */
-					
-					
 					
 					
 					
